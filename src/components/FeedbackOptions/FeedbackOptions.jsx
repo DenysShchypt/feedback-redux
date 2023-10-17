@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
 import { AddFeedback, ButtonAddFeedback } from './FeedbackOptions.styled';
 
-export class FeedbackOptions extends Component {
-  render() {
-    const { onLeaveFeedback, options } = this.props;
+import React from 'react'
+
+export const FeedbackOptions = ({onLeaveFeedback, options}) => {
+
     return (
       <AddFeedback>
         {options.map(option => (
@@ -14,7 +14,5 @@ export class FeedbackOptions extends Component {
  
       </AddFeedback>
     );
-  }
 }
-
 export default FeedbackOptions;
