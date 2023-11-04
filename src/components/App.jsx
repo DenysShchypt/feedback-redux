@@ -3,29 +3,39 @@ import Section from './Section/Section';
 import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import { Notification } from './Notification/Notification';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBad, getGood, getNeutral } from 'redux/selectors';
+import { setGood } from 'redux/goodSlice';
+import { setNeutral } from 'redux/neutralSlice';
+import { setBad } from 'redux/badSlice';
 
 export const App = () => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+  const good =useSelector(getGood);
+  const neutral = useSelector(getNeutral);
+  const bad = useSelector(getBad);
+  const dispatch = useDispatch();
 
   const handleFeedback = ({ target }) => {
-    const { name } = target;
-    switch (name) {
-      case 'good':
-        setGood(good + 1);
+    switch (target.name) {
+      case "good":
+        dispatch(setGood(target.name))
         break;
-      case 'neutral':
-        setNeutral(neutral + 1);
+      case "neutral":
+        dispatch(setNeutral(target.name))
         break;
-      case 'bad':
-        setBad(bad + 1);
+      case "bad":
+        dispatch(setBad(target.name))
         break;
-      default:
-        return;
+        default:
+          return;
+
+
     }
-  };
+   
+   
+   
+    }
+
 
   const countTotalFeedback = (a, b, c) => a + b + c;
 
